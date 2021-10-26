@@ -1,1 +1,1 @@
-# training-oreilly-iceberg
+# O'Reiilly Training - Introduction to Apache Iceberg

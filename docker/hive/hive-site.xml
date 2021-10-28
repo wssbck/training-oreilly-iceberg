@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+    <name>datanucleus.autoStartMechanismMode</name>
+    <!-- the newer default is 'checked' -->
+    <value>ignored</value>
+    <description>Throw exception if metadata tables are incorrect.</description>
+  </property>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>local</value>
+    <description>https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-Hive,Map-ReduceandLocal-Mode</description>
+  </property>
+</configuration>

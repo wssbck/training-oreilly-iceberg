@@ -1,0 +1,29 @@
+services:
+
+  hive:
+    build: ./hive/
+    ports:
+      - "10000:10000"
+
+  # flink:
+  #   build: ./flink/
+  #   ports:
+  #     - "8080:8080"
+
+  jupyter:
+    build: ./jupyter/
+    ports:
+      - "8888:8888"
+    environment:
+      - HIVE_URL=hive
+      - HIVE_PORT=10000
+    depends_on:
+      - hive
+
+  # trino:
+  #   build: ./trino/
+  #   ports:
+  #     - "8080:8080"
+
+# volumes:
+#   warehouse: {}

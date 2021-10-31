@@ -1,3 +1,0 @@
-#/bin/sh
-
-docker build -t oreilly_iceberg_$1 ./docker/$1

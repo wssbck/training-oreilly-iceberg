@@ -1,3 +1,0 @@
-#/bin/sh
-
-docker run -p $2:$2 oreilly_iceberg_$1

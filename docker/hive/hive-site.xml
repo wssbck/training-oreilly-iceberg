@@ -4,6 +4,18 @@
 <configuration>
 
   <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>/usr/local/hadoop/warehouse</value>
+    <description>Throw exception if metadata tables are incorrect.</description>
+  </property>
+
+  <property>
+    <name>iceberg.engine.hive.enabled</name>
+    <value>true</value>
+    <description>Throw exception if metadata tables are incorrect.</description>
+  </property>
+
+  <property>
     <name>datanucleus.autoStartMechanismMode</name>
     <value>ignored</value>
     <description>Throw exception if metadata tables are incorrect.</description>

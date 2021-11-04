@@ -1,16 +1,20 @@
 # O'Reiilly Training - Introduction to Apache Iceberg
 
-### Project Structure
-
-
-
 ### Requirements
 
 The only thing needed is docker and docker-compose.
 
-### Docker Lifecycle
+### Project Structure
 
-Build all required images:
+### Preparations
+
+Create folder for the data
+
+```sh
+mkdir ./_data
+```
+
+Build Docker images:
 
 ```sh
 ./dbuild
@@ -22,7 +26,9 @@ Run the entire stack using Docker Compose:
 ./drun
 ```
 
-Remove all Docker containers and images generated for the purpose of the training:
+### Cleanup
+
+You can remove all Docker containers and images generated for the purpose of the training by running:
 
 ```sh
 ./dclean

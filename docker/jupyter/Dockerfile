@@ -44,8 +44,7 @@ ARG AVRO_VERSION=1.11.0
 COPY avro /
 RUN chmod +x avro
 RUN wget https://dlcdn.apache.org/avro/avro-$AVRO_VERSION/java/avro-tools-$AVRO_VERSION.jar
-RUN mv avro-tools-$AVRO_VERSION.jar avro.jar
-RUN mv avro* /usr/bin/
+RUN mv avro-tools-$AVRO_VERSION.jar avro.jar && mv avro* /usr/bin/
 
 # enable Scala in Jupyter
 RUN python3 -m spylon_kernel install

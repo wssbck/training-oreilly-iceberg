@@ -16,6 +16,12 @@
   </property>
 
   <property>
+    <name>hive.server2.transport.mode</name>
+    <value>binary</value>
+    <description>Throw exception if metadata tables are incorrect.</description>
+  </property>
+
+  <property>
     <name>datanucleus.autoStartMechanismMode</name>
     <value>ignored</value>
     <description>Throw exception if metadata tables are incorrect.</description>

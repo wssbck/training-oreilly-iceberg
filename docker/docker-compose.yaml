@@ -1,29 +1,44 @@
 services:
 
-  hive:
+  hive_hiveserver2:
     build: ./hive/
-    ports:
-      - "10000:10000"
+    command: ["sh", "/run_hiveserver2.sh"]
+    container_name: oreilly_iceberg_hive_hiveserver2
+    volumes:
+      - type: bind
+        source: ../_data
+        target: /usr/local/hadoop/warehouse
+
+  hive_metastore:
+    build: ./hive/
+    command: ["sh", "/run_metastore.sh"]
+    container_name: oreilly_iceberg_hive_metastore
+    volumes:
+      - type: bind
+        source: ../_data
+        target: /usr/local/hadoop/warehouse
 
   # flink:
   #   build: ./flink/
+  #   container_name: oreilly_iceberg_flink
   #   ports:
   #     - "8080:8080"
 
   jupyter:
     build: ./jupyter/
+    container_name: oreilly_iceberg_jupyter
     ports:
       - "8888:8888"
-    environment:
-      - HIVE_URL=hive
-      - HIVE_PORT=10000
-    depends_on:
-      - hive
+    volumes:
+      - type: bind
+        source: ../_data
+        target: /_oreilly_iceberg/data
+      - type: bind
+        source: ../_notebooks
+        target: /_oreilly_iceberg/notebooks
 
   # trino:
   #   build: ./trino/
+  #   container_name: oreilly_iceberg_trino
   #   ports:
   #     - "8080:8080"
-
-# volumes:
-#   warehouse: {}

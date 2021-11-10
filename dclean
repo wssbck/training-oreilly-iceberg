@@ -1,4 +1,4 @@
 #/bin/sh
 
 docker compose -f ./docker/docker-compose.yaml rm --stop --force
-docker rmi --force docker_hive docker_flink docker_jupyter docker_trino
+docker rmi --force docker_hive_hiveserver2 docker_hive_metastore docker_flink docker_jupyter docker_trino

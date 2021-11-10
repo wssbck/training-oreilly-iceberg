@@ -33,3 +33,9 @@ You can remove all Docker containers and images generated for the purpose of the
 ```sh
 ./dclean
 ```
+
+If you wish, you can also remove the `_data` folder:
+
+```sh
+rm -rf ./_data
+```

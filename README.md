@@ -37,7 +37,7 @@ Run the entire stack using Docker Compose:
 ./drun
 ```
 
-After the stack is up, the Jupyter environment will be available at http://localhost:8888. Once opened, training notebooks are available in the folder `_oreilly_iceberg/notebooks/`.
+After the stack is up, the Jupyter environment will be available at http://localhost:8888. Once opened, training notebooks are available in the folder `/_oreilly_iceberg/notebooks/`.
 
 To verify that everything works, try executing all cells in the notebook called `00_test.ipynb`, one by one.
 

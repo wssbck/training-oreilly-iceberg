@@ -1,18 +1,35 @@
 # O'Reiilly Training - Introduction to Apache Iceberg
 
+This repository contains Docker environment, code examples and excercises for the O'Reilly training session titled "Getting Started With Apache Iceberg".
+
 ### Requirements
 
-The only thing needed is docker and docker-compose.
+The only required component is `docker` and `docker-compose`, which can be downloaded as a single package from https://www.docker.com/products/docker-desktop. Shortcut scripts prepared in this repository assume that a *nix operating system is being used, offering one of the standard shell environments like `sh` or `bash`.
+
+**All commands described here should be executed from the main folder of the repository.**
 
 ### Project Structure
 
+The structure of the folders and files in this project is as follows:
+
+```
++- ./_data/      # stores data generated when executing Jupyter notebooks
++- ./_notebooks/ # Jupyter notebooks with examples and excercises
++- ./docker/     # definitions of Docker images and Docker Compose stack
++- ./dbuild      # build command (see below)
++- ./dclean      # clean command (see below)
++- ./drun        # run command (see below)
+```
+
 ### Preparations
 
-Build Docker images:
+Build Docker images (it may take awhile):
 
 ```sh
 ./dbuild
 ```
+
+### Running and Testing
 
 Run the entire stack using Docker Compose:
 
@@ -20,10 +37,20 @@ Run the entire stack using Docker Compose:
 ./drun
 ```
 
+After the stack is up, the Jupyter environment will be available at http://localhost:8888. Once opened, training notebooks are available in the folder `_oreilly_iceberg/notebooks/`.
+
+To verify that everything works, try executing all cells in the notebook called `00_test.ipynb`, one by one.
+
 ### Cleanup
 
-You can remove all Docker containers and images generated for the purpose of the training by running:
+After working with the included notebooks, all Docker containers and images generated for the purpose of the training can be removed by running:
 
 ```sh
 ./dclean
+```
+
+Afterwards the images will have to be rebuilt from scratch if necessary. Additionlly, a quick way to remove all data files generated during the execution of the notebooks is to remove all untracked files using `git`:
+
+```sh
+git clean -fx
 ```

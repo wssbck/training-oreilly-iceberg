@@ -25,7 +25,6 @@ RUN pip3 install --no-cache \
                 notebook==6.4.5 \
                 spylon-kernel==0.4.1 \
                 pyhive[hive]==0.6.4 \
-                pyhive[trino]==0.6.4 \
                 pyspark==3.2.0
 
 # set up Iceberg Java libraries
@@ -38,7 +37,7 @@ RUN wget $MAVEN_REPO/iceberg-core/$ICEBERG_VERSION/iceberg-core-$ICEBERG_VERSION
          $MAVEN_REPO/iceberg-spark3-runtime/$ICEBERG_VERSION/iceberg-spark3-runtime-$ICEBERG_VERSION.jar
 RUN mkdir /jars
 RUN mv iceberg*.jar /jars/
-ENV CLASSPATH=/jars
+ENV CLASSPATH=/jars;/usr/local/lib/python3.8/dist-packages/pyspark/jars
 
 
 # install Python Iceberg

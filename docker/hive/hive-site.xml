@@ -4,6 +4,18 @@
 <configuration>
 
   <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>hive.users.in.admin.role</name>
+    <value>root</value>
+    <description/>
+  </property>
+
+  <property>
     <name>hive.metastore.warehouse.dir</name>
     <value>/usr/local/hadoop/warehouse</value>
     <description/>

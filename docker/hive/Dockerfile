@@ -65,5 +65,4 @@ RUN schematool -dbType derby -initSchema
 COPY run_hiveserver2.sh /
 COPY run_metastore.sh /
 RUN chmod +x /run_hiveserver2.sh
-RUN chmod +x /run_metastore.sh
 CMD ["sh", "/run_hiveserver2.sh"]

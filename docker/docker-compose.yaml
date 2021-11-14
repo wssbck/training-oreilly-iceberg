@@ -1,18 +1,8 @@
 services:
 
-  hive_hiveserver2:
+  hive-hiveserver2:
     build: ./hive/
-    command: ["sh", "/run_hiveserver2.sh"]
     container_name: oreilly_iceberg_hive_hiveserver2
-    volumes:
-      - type: bind
-        source: ../_data
-        target: /usr/local/hadoop/warehouse
-
-  hive_metastore:
-    build: ./hive/
-    command: ["sh", "/run_metastore.sh"]
-    container_name: oreilly_iceberg_hive_metastore
     volumes:
       - type: bind
         source: ../_data
@@ -36,9 +26,3 @@ services:
       - type: bind
         source: ../_notebooks
         target: /_oreilly_iceberg/notebooks
-
-  # trino:
-  #   build: ./trino/
-  #   container_name: oreilly_iceberg_trino
-  #   ports:
-  #     - "8080:8080"

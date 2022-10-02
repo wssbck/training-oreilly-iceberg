@@ -1,6 +1,6 @@
-# O'Reiilly Training - Introduction to Apache Iceberg
+# O'Reilly Training - Introduction to Apache Iceberg
 
-This repository contains Docker environment, code examples and excercises for the O'Reilly training session titled "Getting Started With Apache Iceberg".
+This repository contains Docker environment, code examples and exercises for the O'Reilly training session titled "Getting Started With Apache Iceberg".
 
 ### Requirements
 
@@ -14,7 +14,7 @@ The structure of the folders and files in this project is as follows:
 
 ```
 +- ./_data/      # stores data generated when executing Jupyter notebooks
-+- ./_notebooks/ # Jupyter notebooks with examples and excercises
++- ./_notebooks/ # Jupyter notebooks with examples and exercises
 +- ./docker/     # definitions of Docker images and Docker Compose stack
 +- ./dbuild      # build command (see below)
 +- ./dclean      # clean command (see below)
@@ -49,7 +49,7 @@ After working with the included notebooks, all Docker containers and images gene
 ./dclean
 ```
 
-Afterwards the images will have to be rebuilt from scratch if necessary. Additionlly, a quick way to remove all data files generated during the execution of the notebooks is to remove all untracked files using `git`:
+Afterwards the images will have to be rebuilt from scratch if necessary. Additionally, a quick way to remove all data files generated during the execution of the notebooks is to remove all untracked files using `git`:
 
 ```sh
 git clean -fx

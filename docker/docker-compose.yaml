@@ -1,12 +1,12 @@
 services:
 
-  hive-hiveserver2:
-    build: ./hive/
-    container_name: oreilly_iceberg_hive_hiveserver2
-    volumes:
-      - type: bind
-        source: ../_data
-        target: /usr/local/hadoop/warehouse
+  # hive-hiveserver2:
+  #  build: ./hive/
+  #  container_name: oreilly_iceberg_hive_hiveserver2
+  #  volumes:
+  #    - type: bind
+  #      source: ../_data
+  #      target: /usr/local/hadoop/warehouse
 
   # flink:
   #   build: ./flink/

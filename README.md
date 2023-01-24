@@ -6,6 +6,10 @@ This repository contains Docker environment, code examples and exercises for the
 
 The only required component is `docker` and `docker-compose`, which can be downloaded as a single package from https://www.docker.com/products/docker-desktop. Shortcut scripts prepared in this repository assume that a *nix operating system is being used, offering one of the standard shell environments like `sh` or `bash`.
 
+**Windows**
+
+In order to use the contents of this repository on Windows, WSL (Windows Subsystem for Linux) is required. In addition to that, an option in Docker Desktop to integrate with WSL needs to be enabled.
+
 **All commands described here should be executed from the main folder of the repository.**
 
 ### Project Structure

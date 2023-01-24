@@ -3,10 +3,10 @@
 # split downloads so the layers are cached independently, and the .tar.gzs aren't included in the final image (reducing the size)
 # https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae
 
-FROM alpine:3.14 as hadoop
+FROM alpine:3.17 as hadoop
 
 ARG MIRROR=https://dlcdn.apache.org
-ARG HADOOP_VERSION=3.3.1
+ARG HADOOP_VERSION=3.3.4
 
 # download remotely
 RUN wget $MIRROR/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
@@ -14,16 +14,16 @@ RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
 RUN mv hadoop-$HADOOP_VERSION hadoop
 
 
-FROM alpine:3.14 as hive
+FROM alpine:3.17 as hive
 ARG MIRROR=https://dlcdn.apache.org
-ARG HIVE_VERSION=3.1.2
+ARG HIVE_VERSION=3.1.3
 
 # download remotely
 RUN wget $MIRROR/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN tar -xzf apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN mv apache-hive-$HIVE_VERSION-bin hive
 # https://stackoverflow.com/a/41789082/358804
-RUN rm hive/lib/log4j-slf4j-impl-2.10.0.jar
+# RUN rm hive/lib/log4j-slf4j-impl-2.10.0.jar
 
 # replace guava versions - issue: https://issues.apache.org/jira/browse/HIVE-22915
 RUN rm hive/lib/guava-19.0.jar
@@ -32,7 +32,7 @@ RUN mv guava-29.0-jre.jar hive/lib/
 
 # add Iceberg jars for Hive
 ARG MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
-ARG ICEBERG_VERSION=0.12.0
+ARG ICEBERG_VERSION=0.14.1
 RUN wget $MAVEN_REPO/iceberg-hive-runtime/$ICEBERG_VERSION/iceberg-hive-runtime-$ICEBERG_VERSION.jar
 RUN mv iceberg-hive-runtime-$ICEBERG_VERSION.jar hive/lib/
 

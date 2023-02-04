@@ -32,13 +32,12 @@ RUN mv guava-29.0-jre.jar hive/lib/
 
 # add Iceberg jars for Hive
 ARG MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
-ARG ICEBERG_VERSION=0.14.1
+ARG ICEBERG_VERSION=1.1.0
 RUN wget $MAVEN_REPO/iceberg-hive-runtime/$ICEBERG_VERSION/iceberg-hive-runtime-$ICEBERG_VERSION.jar
 RUN mv iceberg-hive-runtime-$ICEBERG_VERSION.jar hive/lib/
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04
-
 FROM ubuntu:18.04
 
 WORKDIR /usr/local/hadoop

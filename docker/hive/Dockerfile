@@ -23,7 +23,7 @@ RUN wget $MIRROR/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN tar -xzf apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN mv apache-hive-$HIVE_VERSION-bin hive
 # https://stackoverflow.com/a/41789082/358804
-# RUN rm hive/lib/log4j-slf4j-impl-2.10.0.jar
+# RUN rm hive/lib/log4j-slf4j-impl-*.jar
 
 # replace guava versions - issue: https://issues.apache.org/jira/browse/HIVE-22915
 RUN rm hive/lib/guava-19.0.jar
@@ -64,4 +64,5 @@ RUN schematool -dbType derby -initSchema
 COPY run_hiveserver2.sh /
 COPY run_metastore.sh /
 RUN chmod +x /run_hiveserver2.sh
-CMD ["sh", "/run_hiveserver2.sh"]
+RUN chmod +x /run_metastore.sh
+# CMD ["sh", "/run_hiveserver2.sh"]

@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONT
 
 # install required system-level packages
 RUN apt-get update && apt-get install -y \
-            openjdk-8-jdk \
+            openjdk-11-jdk \
             build-essential \
             libsasl2-dev \
             git \
@@ -24,23 +24,26 @@ ENV LC_ALL C.UTF-8
 RUN pip3 install --no-cache \
                 pyiceberg==0.2.1 \
                 notebook==6.5.2 \
-                pyhive[hive]==0.6.5 \
+#                pyhive[hive]==0.6.5 \
                 pyspark==3.2.3 \
-                spylon-kernel==0.4.1 \
+#                spylon-kernel==0.4.1 \
                 trino==0.321.0
 
-# set up Iceberg Java libraries
-ARG MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
+# set up Iceberg Java libraries and other jars for Spark
+ARG ICEBERG_MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
 ARG ICEBERG_VERSION=1.1.0
-RUN wget $MAVEN_REPO/iceberg-core/$ICEBERG_VERSION/iceberg-core-$ICEBERG_VERSION.jar \
-         $MAVEN_REPO/iceberg-common/$ICEBERG_VERSION/iceberg-common-$ICEBERG_VERSION.jar \
-         $MAVEN_REPO/iceberg-api/$ICEBERG_VERSION/iceberg-api-$ICEBERG_VERSION.jar \
-         $MAVEN_REPO/iceberg-parquet/$ICEBERG_VERSION/iceberg-parquet-$ICEBERG_VERSION.jar \
-         $MAVEN_REPO/iceberg-spark-runtime-3.2_2.13/$ICEBERG_VERSION/iceberg-spark-runtime-3.2_2.13-$ICEBERG_VERSION.jar
-RUN mkdir /jars
-RUN mv iceberg*.jar /jars/
-ENV CLASSPATH=/jars;/usr/local/lib/python3.10/dist-packages/pyspark/jars
+RUN wget $ICEBERG_MAVEN_REPO/iceberg-core/$ICEBERG_VERSION/iceberg-core-$ICEBERG_VERSION.jar \
+         $ICEBERG_MAVEN_REPO/iceberg-common/$ICEBERG_VERSION/iceberg-common-$ICEBERG_VERSION.jar \
+         $ICEBERG_MAVEN_REPO/iceberg-api/$ICEBERG_VERSION/iceberg-api-$ICEBERG_VERSION.jar \
+         $ICEBERG_MAVEN_REPO/iceberg-parquet/$ICEBERG_VERSION/iceberg-parquet-$ICEBERG_VERSION.jar \
+         $ICEBERG_MAVEN_REPO/iceberg-spark-runtime-3.2_2.13/$ICEBERG_VERSION/iceberg-spark-runtime-3.2_2.13-$ICEBERG_VERSION.jar
 
+ARG CAFFEINE_VERSION=3.1.2
+RUN wget https://repo1.maven.org/maven2/com/github/ben-manes/caffeine/caffeine/$CAFFEINE_VERSION/caffeine-$CAFFEINE_VERSION.jar
+
+# RUN mkdir /jars
+RUN mv *.jar /usr/local/lib/python3.10/dist-packages/pyspark/jars
+# ENV CLASSPATH=/jars:/usr/local/lib/python3.10/dist-packages/pyspark/jars
 
 # install Python Iceberg
 #RUN git clone https://github.com/apache/iceberg.git
@@ -48,7 +51,7 @@ ENV CLASSPATH=/jars;/usr/local/lib/python3.10/dist-packages/pyspark/jars
 #RUN pip3 install -e ./iceberg/python
 
 # enable Scala in Jupyter
-RUN python3 -m spylon_kernel install
+# RUN python3 -m spylon_kernel install
 
 # install avro tools
 ARG AVRO_VERSION=1.11.1

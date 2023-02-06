@@ -36,7 +36,6 @@ ARG ICEBERG_VERSION=1.1.0
 RUN wget $MAVEN_REPO/iceberg-hive-runtime/$ICEBERG_VERSION/iceberg-hive-runtime-$ICEBERG_VERSION.jar
 RUN mv iceberg-hive-runtime-$ICEBERG_VERSION.jar hive/lib/
 
-
 # https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04
 FROM ubuntu:18.04
 

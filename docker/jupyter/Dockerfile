@@ -30,16 +30,19 @@ RUN pip3 install --no-cache \
                 trino==0.321.0
 
 # set up Iceberg Java libraries and other jars for Spark
-ARG ICEBERG_MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
 ARG ICEBERG_VERSION=1.1.0
-RUN wget $ICEBERG_MAVEN_REPO/iceberg-core/$ICEBERG_VERSION/iceberg-core-$ICEBERG_VERSION.jar \
-         $ICEBERG_MAVEN_REPO/iceberg-common/$ICEBERG_VERSION/iceberg-common-$ICEBERG_VERSION.jar \
-         $ICEBERG_MAVEN_REPO/iceberg-api/$ICEBERG_VERSION/iceberg-api-$ICEBERG_VERSION.jar \
-         $ICEBERG_MAVEN_REPO/iceberg-parquet/$ICEBERG_VERSION/iceberg-parquet-$ICEBERG_VERSION.jar \
-         $ICEBERG_MAVEN_REPO/iceberg-spark-runtime-3.2_2.13/$ICEBERG_VERSION/iceberg-spark-runtime-3.2_2.13-$ICEBERG_VERSION.jar
+ARG ICEBERG_MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
+#RUN wget $ICEBERG_MAVEN_REPO/iceberg-core/$ICEBERG_VERSION/iceberg-core-$ICEBERG_VERSION.jar \
+#         $ICEBERG_MAVEN_REPO/iceberg-common/$ICEBERG_VERSION/iceberg-common-$ICEBERG_VERSION.jar \
+#         $ICEBERG_MAVEN_REPO/iceberg-api/$ICEBERG_VERSION/iceberg-api-$ICEBERG_VERSION.jar \
+         # $ICEBERG_MAVEN_REPO/iceberg-parquet/$ICEBERG_VERSION/iceberg-parquet-$ICEBERG_VERSION.jar \
+RUN wget $ICEBERG_MAVEN_REPO/iceberg-spark-runtime-3.2_2.13/$ICEBERG_VERSION/iceberg-spark-runtime-3.2_2.13-$ICEBERG_VERSION.jar
 
 ARG CAFFEINE_VERSION=3.1.2
 RUN wget https://repo1.maven.org/maven2/com/github/ben-manes/caffeine/caffeine/$CAFFEINE_VERSION/caffeine-$CAFFEINE_VERSION.jar
+
+ARG AVRO_VERSION=1.12.3
+RUN wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-avro/$AVRO_VERSION/parquet-avro-$AVRO_VERSION.jar
 
 # RUN mkdir /jars
 RUN mv *.jar /usr/local/lib/python3.10/dist-packages/pyspark/jars

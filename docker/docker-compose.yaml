@@ -37,6 +37,12 @@ services:
         source: ../_notebooks
         target: /_oreilly_iceberg/notebooks
 
+  trino:
+    build: ./trino/
+    container_name: oreilly_iceberg_trino
+    ports:
+      - "8080:8080"
+
 
 #volumes:
 

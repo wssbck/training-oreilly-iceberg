@@ -16,7 +16,7 @@ services:
     volumes:
       - type: bind
         source: ../_data
-        target: /_oreilly_iceberg/data
+        target: /usr/local/hadoop/warehouse
 
   # flink:
   #   build: ./flink/
@@ -32,7 +32,7 @@ services:
     volumes:
       - type: bind
         source: ../_data
-        target: /_oreilly_iceberg/data
+        target: /usr/local/hadoop/warehouse
       - type: bind
         source: ../_notebooks
         target: /_oreilly_iceberg/notebooks
@@ -42,6 +42,13 @@ services:
     container_name: oreilly_iceberg_trino
     ports:
       - "8080:8080"
+    volumes:
+      - type: bind
+        source: ../_data
+        target: /usr/local/hadoop/warehouse
+      - type: bind
+        source: ./trino/config
+        target: /etc/trino/
 
 
 #volumes:

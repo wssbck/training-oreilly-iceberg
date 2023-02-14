@@ -58,4 +58,20 @@ RUN chmod +x avro
 RUN wget https://dlcdn.apache.org/avro/avro-$AVRO_VERSION/java/avro-tools-$AVRO_VERSION.jar
 RUN mv avro-tools-$AVRO_VERSION.jar avro.jar && mv avro* /usr/bin/
 
+# download and copy Hadoop and Iceberg jars for the Python Flink client
+ARG MIRROR=https://dlcdn.apache.org
+ARG HADOOP_VERSION=3.3.4
+
+RUN wget $MIRROR/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
+RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
+RUN mv hadoop-$HADOOP_VERSION hadoop
+RUN wget $ICEBERG_MAVEN_REPO/iceberg-flink-runtime-1.16/$ICEBERG_VERSION/iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar
+run mv iceberg-flink-runtime*.jar /hadoop
+
+COPY hadoop_jars.py /
+RUN python3 hadoop_jars.py
+RUN rm hadoop-$HADOOP_VERSION.tar.gz
+RUN rm -rf /hadoop
+
+
 CMD ["jupyter", "notebook", "--allow-root", "--ip", "0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]

@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 # set locale to avoid issues with interactive installations
 # https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai
@@ -21,13 +21,8 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 # install Python libraries
-RUN pip3 install --no-cache \
-                pyiceberg==0.2.1 \
-                notebook==6.5.2 \
-#                pyhive[hive]==0.6.5 \
-                pyspark==3.2.3 \
-#                spylon-kernel==0.4.1 \
-                trino==0.321.0
+COPY requirements.txt /
+RUN pip3 install --no-cache -r requirements.txt
 
 # set up Iceberg Java libraries and other jars for Spark
 ARG ICEBERG_VERSION=1.1.0
@@ -45,8 +40,8 @@ ARG PARQUET_AVRO_VERSION=1.12.3
 RUN wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-avro/$PARQUET_AVRO_VERSION/parquet-avro-$PARQUET_AVRO_VERSION.jar
 
 # RUN mkdir /jars
-RUN mv *.jar /usr/local/lib/python3.10/dist-packages/pyspark/jars
-# ENV CLASSPATH=/jars:/usr/local/lib/python3.10/dist-packages/pyspark/jars
+RUN mv *.jar /usr/local/lib/python3.8/dist-packages/pyspark/jars
+# ENV CLASSPATH=/jars:/usr/local/lib/python3.8/dist-packages/pyspark/jars
 
 # install Python Iceberg
 #RUN git clone https://github.com/apache/iceberg.git

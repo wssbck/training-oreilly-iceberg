@@ -65,8 +65,11 @@ ARG HADOOP_VERSION=3.3.4
 RUN wget $MIRROR/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
 RUN mv hadoop-$HADOOP_VERSION hadoop
+
 RUN wget $ICEBERG_MAVEN_REPO/iceberg-flink-runtime-1.16/$ICEBERG_VERSION/iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar
-run mv iceberg-flink-runtime*.jar /hadoop
+RUN mv iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar iceberg-flink-runtime.jar
+RUN cp iceberg-flink-runtime.jar /hadoop
+RUN mv iceberg-flink-runtime.jar /opt/
 
 COPY hadoop_jars.py /
 RUN python3 hadoop_jars.py

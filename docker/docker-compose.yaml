@@ -13,6 +13,8 @@ services:
     build: ./hive/
     container_name: oreilly_iceberg_hivemetastore
     command: "sh /run_metastore.sh"
+    ports:
+      - "9083:9083"
     volumes:
       - type: bind
         source: ../_data

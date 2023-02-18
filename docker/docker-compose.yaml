@@ -1,14 +1,5 @@
 services:
 
-#  hiveserver2:
-#    build: ./hive/
-#    container_name: oreilly_iceberg_hiveserver2
-#    command: "sh /run_hiveserver2.sh"
-#    volumes:
-#      - type: bind
-#        source: ../_data
-#        target: /usr/local/hadoop/warehouse
-
   hivemetastore:
     build: ./hive/
     container_name: oreilly_iceberg_hivemetastore

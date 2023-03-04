@@ -31,9 +31,9 @@ ARG CAFFEINE_VERSION=3.1.2
 ARG PARQUET_AVRO_VERSION=1.12.3
 
 ARG ICEBERG_MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
-RUN wget $ICEBERG_MAVEN_REPO/iceberg-spark-runtime-3.2_2.13/$ICEBERG_VERSION/iceberg-spark-runtime-3.2_2.13-$ICEBERG_VERSION.jar
-RUN wget https://repo1.maven.org/maven2/com/github/ben-manes/caffeine/caffeine/$CAFFEINE_VERSION/caffeine-$CAFFEINE_VERSION.jar
-RUN wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-avro/$PARQUET_AVRO_VERSION/parquet-avro-$PARQUET_AVRO_VERSION.jar
+RUN wget ${ICEBERG_MAVEN_REPO}/iceberg-spark-runtime-3.2_2.13/${ICEBERG_VERSION}/iceberg-spark-runtime-3.2_2.13-${ICEBERG_VERSION}.jar
+RUN wget https://repo1.maven.org/maven2/com/github/ben-manes/caffeine/caffeine/${CAFFEINE_VERSION}/caffeine-${CAFFEINE_VERSION}.jar
+RUN wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-avro/${PARQUET_AVRO_VERSION}/parquet-avro-${PARQUET_AVRO_VERSION}.jar
 
 # RUN mkdir /jars
 RUN mv *.jar /usr/local/lib/python3.8/dist-packages/pyspark/jars
@@ -45,25 +45,25 @@ RUN mv *.jar /usr/local/lib/python3.8/dist-packages/pyspark/jars
 ARG AVRO_VERSION=1.11.1
 COPY avro /
 RUN chmod +x avro
-RUN wget https://dlcdn.apache.org/avro/avro-$AVRO_VERSION/java/avro-tools-$AVRO_VERSION.jar
+RUN wget https://dlcdn.apache.org/avro/avro-${AVRO_VERSION}/java/avro-tools-${AVRO_VERSION}.jar
 RUN mv avro-tools-$AVRO_VERSION.jar avro.jar && mv avro* /usr/bin/
 
 # download and copy Hadoop and Iceberg jars for the Python Flink client
-ARG MIRROR=https://dlcdn.apache.org
-ARG HADOOP_VERSION=3.3.4
+# ARG HADOOP_MIRROR=https://dlcdn.apache.org
+# ARG HADOOP_VERSION=3.3.4
 
-RUN wget $MIRROR/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
-RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
-RUN mv hadoop-$HADOOP_VERSION hadoop
+# RUN wget ${HADOOP_MIRROR}/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz
+# RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
+# RUN mv hadoop-$HADOOP_VERSION hadoop
 
-RUN wget $ICEBERG_MAVEN_REPO/iceberg-flink-runtime-1.16/$ICEBERG_VERSION/iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar
-RUN mv iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar iceberg-flink-runtime.jar
-RUN cp iceberg-flink-runtime.jar /hadoop
-RUN mv iceberg-flink-runtime.jar /opt/
+# RUN wget $ICEBERG_MAVEN_REPO/iceberg-flink-runtime-1.16/$ICEBERG_VERSION/iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar
+# RUN mv iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar iceberg-flink-runtime.jar
+# RUN cp iceberg-flink-runtime.jar /hadoop
+# RUN mv iceberg-flink-runtime.jar /opt/
 
-COPY hadoop_jars.py /
-RUN python3 hadoop_jars.py
-RUN rm hadoop-$HADOOP_VERSION.tar.gz
-RUN rm -rf /hadoop
+# COPY hadoop_jars.py /
+# RUN python3 hadoop_jars.py
+# RUN rm hadoop-$HADOOP_VERSION.tar.gz
+# RUN rm -rf /hadoop
 
 CMD ["jupyter", "notebook", "--allow-root", "--ip", "0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]

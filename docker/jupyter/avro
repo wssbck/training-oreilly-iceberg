@@ -1,6 +1,0 @@
-#!/bin/sh
-
-SCRIPTFILE=$(readlink -f "$0")
-SCRIPTPATH=$(dirname "$SCRIPTFILE")
-
-java -jar $SCRIPTPATH/avro.jar "$@"

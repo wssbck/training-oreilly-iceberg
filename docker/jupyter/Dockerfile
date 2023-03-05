@@ -43,9 +43,7 @@ RUN mv *.jar /usr/local/lib/python3.8/dist-packages/pyspark/jars
 
 # install avro tools
 ARG AVRO_VERSION=1.11.1
-COPY avro /
-RUN chmod +x avro
-RUN wget https://dlcdn.apache.org/avro/avro-${AVRO_VERSION}/java/avro-tools-${AVRO_VERSION}.jar
+RUN wget https://repo1.maven.org/maven2/org/apache/avro/avro-tools/${AVRO_VERSION}/avro-tools-${AVRO_VERSION}.jar
 RUN mv avro-tools-$AVRO_VERSION.jar avro.jar && mv avro* /usr/bin/
 
 # download and copy Hadoop and Iceberg jars for the Python Flink client

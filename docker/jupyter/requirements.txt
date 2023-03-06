@@ -1,6 +1,6 @@
-apache-flink==1.16.1
+# apache-flink==1.16.1
 notebook==6.5.2
 pyiceberg[hive]==0.2.1
 pyspark==3.2.3
 # spylon-kernel==0.4.1
-trino==0.321.0
+trino==0.322.0

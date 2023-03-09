@@ -23,18 +23,12 @@ RUN wget $MIRROR/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN tar -xzf apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN mv apache-hive-$HIVE_VERSION-bin hive
 # https://stackoverflow.com/a/41789082/358804
-# RUN rm hive/lib/log4j-slf4j-impl-*.jar
+RUN rm hive/lib/log4j-slf4j-impl-*.jar
 
 # replace guava versions - issue: https://issues.apache.org/jira/browse/HIVE-22915
 RUN rm hive/lib/guava-19.0.jar
 RUN wget https://repo1.maven.org/maven2/com/google/guava/guava/29.0-jre/guava-29.0-jre.jar
 RUN mv guava-29.0-jre.jar hive/lib/
-
-# add Iceberg jars for Hive
-ARG MAVEN_REPO=https://repo1.maven.org/maven2/org/apache/iceberg
-ARG ICEBERG_VERSION=1.1.0
-RUN wget $MAVEN_REPO/iceberg-hive-runtime/$ICEBERG_VERSION/iceberg-hive-runtime-$ICEBERG_VERSION.jar
-RUN mv iceberg-hive-runtime-$ICEBERG_VERSION.jar hive/lib/
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04
@@ -61,7 +55,5 @@ RUN hadoop fs -mkdir -p /usr/local/hadoop/warehouse
 
 # https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-RunningHiveServer2andBeeline.1
 RUN schematool -dbType derby -initSchema
-COPY run_hiveserver2.sh /
 COPY run_metastore.sh /
-RUN chmod +x /run_hiveserver2.sh
 RUN chmod +x /run_metastore.sh

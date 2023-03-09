@@ -11,17 +11,6 @@ services:
         source: ../_data
         target: /usr/local/hadoop/warehouse
 
-#  flink:
-#    build: ./flink/
-#    container_name: oreilly_iceberg_flink
-#    command: "/docker-entrypoint.sh jobmanager"
-#    ports:
-#      - "8081:8081"
-#    volumes:
-#      - type: bind
-#        source: ../_data
-#        target: /usr/local/hadoop/warehouse
-
   jupyter:
     build: ./jupyter/
     container_name: oreilly_iceberg_jupyter

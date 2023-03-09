@@ -38,30 +38,9 @@ RUN wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-avro/${PARQUE
 # RUN mkdir /jars
 RUN mv *.jar /usr/local/lib/python3.8/dist-packages/pyspark/jars
 
-# enable Scala in Jupyter
-# RUN python3 -m spylon_kernel install
-
 # install avro tools
 ARG AVRO_VERSION=1.11.1
 RUN wget https://repo1.maven.org/maven2/org/apache/avro/avro-tools/${AVRO_VERSION}/avro-tools-${AVRO_VERSION}.jar
 RUN mv avro-tools-$AVRO_VERSION.jar avro.jar && mv avro* /usr/bin/
-
-# download and copy Hadoop and Iceberg jars for the Python Flink client
-# ARG HADOOP_MIRROR=https://dlcdn.apache.org
-# ARG HADOOP_VERSION=3.3.4
-
-# RUN wget ${HADOOP_MIRROR}/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz
-# RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
-# RUN mv hadoop-$HADOOP_VERSION hadoop
-
-# RUN wget $ICEBERG_MAVEN_REPO/iceberg-flink-runtime-1.16/$ICEBERG_VERSION/iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar
-# RUN mv iceberg-flink-runtime-1.16-$ICEBERG_VERSION.jar iceberg-flink-runtime.jar
-# RUN cp iceberg-flink-runtime.jar /hadoop
-# RUN mv iceberg-flink-runtime.jar /opt/
-
-# COPY hadoop_jars.py /
-# RUN python3 hadoop_jars.py
-# RUN rm hadoop-$HADOOP_VERSION.tar.gz
-# RUN rm -rf /hadoop
 
 CMD ["jupyter", "notebook", "--allow-root", "--ip", "0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]

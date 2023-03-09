@@ -1,1 +1,0 @@
-FROM flink:1.16

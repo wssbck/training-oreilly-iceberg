@@ -1,4 +1,4 @@
-notebook==6.5.2
-pyiceberg[hive]==0.2.1
-pyspark==3.2.3
+notebook==6.5.3
+pyiceberg[hive]==0.3.0
+pyspark==3.3.2
 trino==0.322.0

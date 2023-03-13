@@ -26,18 +26,17 @@ COPY requirements.txt /
 RUN pip3 install --no-cache -r requirements.txt
 
 # set up Iceberg Java libraries and other jars for Spark
+ARG MAVEN_REPO=https://repo1.maven.org/maven2
 ARG ICEBERG_VERSION=1.1.0
-ARG SPARK_VERSION=3.3_2.13
+ARG SPARK_VERSION=3.3_2.12
 ARG CAFFEINE_VERSION=3.1.2
 ARG PARQUET_AVRO_VERSION=1.12.3
-ARG MAVEN_REPO=https://repo1.maven.org/maven2
 
 RUN wget ${MAVEN_REPO}/org/apache/iceberg/iceberg-spark-runtime-${SPARK_VERSION}/${ICEBERG_VERSION}/iceberg-spark-runtime-${SPARK_VERSION}-${ICEBERG_VERSION}.jar
 RUN wget ${MAVEN_REPO}/org/apache/iceberg/iceberg-spark-extensions-${SPARK_VERSION}/${ICEBERG_VERSION}/iceberg-spark-extensions-${SPARK_VERSION}-${ICEBERG_VERSION}.jar
 RUN wget ${MAVEN_REPO}/com/github/ben-manes/caffeine/caffeine/${CAFFEINE_VERSION}/caffeine-${CAFFEINE_VERSION}.jar
 RUN wget ${MAVEN_REPO}/org/apache/parquet/parquet-avro/${PARQUET_AVRO_VERSION}/parquet-avro-${PARQUET_AVRO_VERSION}.jar
 
-# RUN mkdir /jars
 RUN mv *.jar /usr/local/lib/python3.8/dist-packages/pyspark/jars
 
 # install avro tools

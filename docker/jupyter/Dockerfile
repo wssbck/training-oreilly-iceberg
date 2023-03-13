@@ -33,6 +33,7 @@ ARG PARQUET_AVRO_VERSION=1.12.3
 ARG MAVEN_REPO=https://repo1.maven.org/maven2
 
 RUN wget ${MAVEN_REPO}/org/apache/iceberg/iceberg-spark-runtime-${SPARK_VERSION}/${ICEBERG_VERSION}/iceberg-spark-runtime-${SPARK_VERSION}-${ICEBERG_VERSION}.jar
+RUN wget ${MAVEN_REPO}/org/apache/iceberg/iceberg-spark-extensions-${SPARK_VERSION}/${ICEBERG_VERSION}/iceberg-spark-extensions-${SPARK_VERSION}-${ICEBERG_VERSION}.jar
 RUN wget ${MAVEN_REPO}/com/github/ben-manes/caffeine/caffeine/${CAFFEINE_VERSION}/caffeine-${CAFFEINE_VERSION}.jar
 RUN wget ${MAVEN_REPO}/org/apache/parquet/parquet-avro/${PARQUET_AVRO_VERSION}/parquet-avro-${PARQUET_AVRO_VERSION}.jar
 

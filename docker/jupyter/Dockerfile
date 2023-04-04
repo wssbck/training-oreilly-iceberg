@@ -27,9 +27,9 @@ RUN pip3 install --no-cache -r requirements.txt
 
 # set up Iceberg Java libraries and other jars for Spark
 ARG MAVEN_REPO=https://repo1.maven.org/maven2
-ARG ICEBERG_VERSION=1.1.0
+ARG ICEBERG_VERSION=1.2.0
 ARG SPARK_VERSION=3.3_2.12
-ARG CAFFEINE_VERSION=3.1.2
+ARG CAFFEINE_VERSION=3.1.5
 ARG PARQUET_AVRO_VERSION=1.12.3
 
 RUN wget ${MAVEN_REPO}/org/apache/iceberg/iceberg-spark-runtime-${SPARK_VERSION}/${ICEBERG_VERSION}/iceberg-spark-runtime-${SPARK_VERSION}-${ICEBERG_VERSION}.jar

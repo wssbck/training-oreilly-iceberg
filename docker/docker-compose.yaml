@@ -1,6 +1,7 @@
 services:
 
   hivemetastore:
+    platform: linux/amd64
     build: ./hive/
     container_name: oreilly_iceberg_hivemetastore
     command: "sh /run_metastore.sh"
@@ -12,6 +13,7 @@ services:
         target: /usr/local/hadoop/warehouse
 
   jupyter:
+    platform: linux/amd64
     build: ./jupyter/
     container_name: oreilly_iceberg_jupyter
     ports:
@@ -25,6 +27,7 @@ services:
         target: /_oreilly_iceberg/notebooks
 
   trino:
+    platform: linux/amd64
     build: ./trino/
     container_name: oreilly_iceberg_trino
     ports:

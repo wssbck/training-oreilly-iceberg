@@ -13,7 +13,6 @@ services:
         target: /usr/local/hadoop/warehouse
 
   jupyter:
-    platform: linux/amd64
     build: ./jupyter/
     container_name: oreilly_iceberg_jupyter
     ports:
@@ -27,7 +26,6 @@ services:
         target: /_oreilly_iceberg/notebooks
 
   trino:
-    platform: linux/amd64
     build: ./trino/
     container_name: oreilly_iceberg_trino
     ports:

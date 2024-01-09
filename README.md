@@ -1,6 +1,8 @@
 # O'Reilly Training - Introduction to Apache Iceberg
 
-This repository contains Docker environment, code examples and exercises for the O'Reilly training session titled "Getting Started With Apache Iceberg".
+This repository contains Docker environment, code examples and exercises for the O'Reilly training titled "Getting Started With Apache Iceberg".
+
+https://www.oreilly.com/live-events/getting-started-with-apache-iceberg/0636920063359/
 
 ### Requirements
 

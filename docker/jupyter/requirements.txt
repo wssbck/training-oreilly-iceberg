@@ -1,4 +1,6 @@
-notebook==7.2.1
-pyiceberg[hive,pyarrow]==0.6.1
-pyspark==3.5.1
+duckdb==1.1.0
+polars[pyiceberg]==1.7.0
+notebook==7.2.2
+pyiceberg[hive,pyarrow]==0.7.1
+pyspark==3.5.2
 trino==0.329.0

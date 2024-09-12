@@ -5,7 +5,7 @@
 
 FROM alpine:3.19 as hadoop
 
-ARG HADOOP_VERSION=3.3.6
+ARG HADOOP_VERSION=3.4.0
 ARG MIRROR=https://dlcdn.apache.org
 
 # download remotely

@@ -17,7 +17,7 @@ RUN mv hadoop-$HADOOP_VERSION hadoop
 FROM alpine:3.19 as hive
 
 ARG HIVE_VERSION=3.1.3
-ARG MIRROR=https://dlcdn.apache.org
+ARG MIRROR=https://archive.apache.org/dist/
 
 # download remotely
 RUN wget $MIRROR/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
@@ -56,5 +56,6 @@ RUN hadoop fs -mkdir -p /usr/local/hadoop/warehouse
 
 # https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-RunningHiveServer2andBeeline.1
 RUN schematool -dbType derby -initSchema
-COPY run_metastore.sh /
-RUN chmod +x /run_metastore.sh
+
+RUN hadoop fs -chmod g+w /usr/local/hadoop/warehouse
+

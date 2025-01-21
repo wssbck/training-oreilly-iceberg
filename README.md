@@ -1,6 +1,6 @@
-# O'Reilly Training - Introduction to Apache Iceberg
+# O'Reilly Video Course - Apache Iceberg Essentials
 
-This repository contains Docker environment, code examples and exercises for the O'Reilly video training titled "Apache Iceberg Essentials: Storing and Managing Data at Scale":
+This repository contains Docker environment and live coding examples for the O'Reilly video course "Apache Iceberg Essentials: Storing and Managing Data at Scale":
 
 https://www.oreilly.com/library/view/apache-iceberg-essentials/0790145715593/
 

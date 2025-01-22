@@ -38,10 +38,3 @@ services:
         source: ./trino/config
         target: /etc/trino/
 
-
-#volumes:
-
-  #warehouse:
-    #type: bind
-    #source: ../_data
-    #target: /_oreilly_iceberg/data

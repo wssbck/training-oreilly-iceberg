@@ -3,9 +3,9 @@
 # split downloads so the layers are cached independently, and the .tar.gzs aren't included in the final image (reducing the size)
 # https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae
 
-FROM alpine:3.19 as hadoop
+FROM alpine:3.21.2 as hadoop
 
-ARG HADOOP_VERSION=3.4.0
+ARG HADOOP_VERSION=3.4.1
 ARG MIRROR=https://dlcdn.apache.org
 
 # download remotely
@@ -14,13 +14,13 @@ RUN tar -xzf hadoop-$HADOOP_VERSION.tar.gz
 RUN mv hadoop-$HADOOP_VERSION hadoop
 
 
-FROM alpine:3.19 as hive
+FROM alpine:3.21.2 as hive
 
 ARG HIVE_VERSION=3.1.3
-ARG MIRROR=https://dlcdn.apache.org
+ARG MIRROR=https://archive.apache.org/
 
 # download remotely
-RUN wget $MIRROR/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
+RUN wget $MIRROR/dist/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN tar -xzf apache-hive-$HIVE_VERSION-bin.tar.gz
 RUN mv apache-hive-$HIVE_VERSION-bin hive
 # https://stackoverflow.com/a/41789082/358804

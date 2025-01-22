@@ -55,8 +55,8 @@ After working with the included notebooks, all Docker containers and images gene
 ./dclean
 ```
 
-Afterwards the images will have to be rebuilt from scratch if necessary. Additionally, a quick way to remove all data files generated during the execution of the notebooks is to remove all untracked files using `git`:
+Afterwards the images will have to be rebuilt from scratch if necessary. Additionally, to remove data files generated during the execution of the notebooks, delete the `./_data/bank_transfers` folder:
 
 ```sh
-git clean -fx
+rm -rf ./_data/bank_transfers
 ```

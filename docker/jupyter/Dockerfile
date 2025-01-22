@@ -6,10 +6,6 @@ ARG CAFFEINE_VERSION=3.2.0
 ARG PARQUET_AVRO_VERSION=1.15.0
 ARG AVRO_VERSION=1.12.0
 
-# set locale to avoid issues with interactive installations
-# https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai
-# RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 # install required system-level packages

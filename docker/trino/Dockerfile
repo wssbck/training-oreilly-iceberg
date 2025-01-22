@@ -1,1 +1,1 @@
-FROM trinodb/trino:468
+FROM trinodb/trino:457

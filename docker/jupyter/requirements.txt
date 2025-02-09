@@ -1,4 +1,4 @@
-polars[pyiceberg]==1.20.0
+polars[pyiceberg]==1.22.0
 notebook==7.3.2
 pyiceberg[hive,pyarrow]==0.8.1
 pyspark==3.5.4

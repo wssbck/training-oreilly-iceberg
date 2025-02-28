@@ -1,6 +1,6 @@
-polars[pyiceberg]==1.22.0
+polars[pyiceberg]==1.23.0
 notebook==7.3.2
 pyiceberg[hive,pyarrow]==0.8.1
-pyspark==3.5.4
+pyspark==3.5.5
 trino==0.333.0
 tzdata==2025.1

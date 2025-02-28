@@ -44,9 +44,9 @@ COPY requirements.txt /
 RUN pip3 install --no-cache -r requirements.txt && rm requirements.txt
 
 # configure Spark logging move the jars to the Spark jars directory
-RUN mkdir ${SPARK_HOME}/config
+RUN mkdir ${SPARK_HOME}/conf
 RUN mv *.jar ${SPARK_HOME}/jars
-COPY log4j2.properties  ${SPARK_HOME}/config
+COPY log4j2.properties  ${SPARK_HOME}/conf
 
 # install avro tools
 RUN wget ${MAVEN_REPO}/org/apache/avro/avro-tools/${AVRO_VERSION}/avro-tools-${AVRO_VERSION}.jar

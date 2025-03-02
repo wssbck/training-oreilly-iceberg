@@ -4,7 +4,6 @@ services:
     platform: linux/amd64
     build: ./hive/
     container_name: oreilly_iceberg_hivemetastore
-    command: "sh /run_metastore.sh"
     ports:
       - "9083:9083"
     volumes:

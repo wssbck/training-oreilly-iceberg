@@ -33,12 +33,14 @@ RUN mv guava-29.0-jre.jar hive/lib/
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04
-FROM ubuntu:22.04
+FROM debian:12-slim
 
 WORKDIR /usr/local/hadoop
 
-RUN apt-get update && apt-get install -y openjdk-11-jdk wget
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jre wget
+
+ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 
 COPY --from=hadoop /hadoop hadoop
 ENV HADOOP_HOME /usr/local/hadoop/hadoop
@@ -50,11 +52,13 @@ ENV PATH="${HIVE_HOME}/bin:${PATH}"
 COPY hive-site.xml $HIVE_HOME/conf/
 
 # https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-RunningHive
-RUN hadoop fs -mkdir -p /tmp
-RUN hadoop fs -chmod g+w /tmp
-RUN hadoop fs -mkdir -p /usr/local/hadoop/warehouse
+RUN hadoop fs -mkdir -p /tmp && \
+    hadoop fs -chmod g+w /tmp && \
+    hadoop fs -mkdir -p /usr/local/hadoop/warehouse
 
 # https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-RunningHiveServer2andBeeline.1
-RUN schematool -dbType derby -initSchema
 COPY run_metastore.sh /
-RUN chmod +x /run_metastore.sh
+RUN schematool -dbType derby -initSchema && \
+    chmod +x /run_metastore.sh
+
+CMD ["/run_metastore.sh"]

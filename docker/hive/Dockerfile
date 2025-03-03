@@ -33,14 +33,9 @@ RUN mv guava-29.0-jre.jar hive/lib/
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04
-FROM debian:12-slim
+FROM openjdk:17-jdk-slim
 
 WORKDIR /usr/local/hadoop
-
-RUN apt-get update && \
-    apt-get install -y openjdk-17-jre wget
-
-ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 
 COPY --from=hadoop /hadoop hadoop
 ENV HADOOP_HOME /usr/local/hadoop/hadoop
